@@ -1,0 +1,39 @@
+{
+  "id": "http://okunishitaka.com/node/rfunc/invoke-schema#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Invoke Schema",
+  "description": "Schema for function invoke endpoint",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/InvokeData"
+    }
+  },
+  "definitions": {
+    "InvokeData": {
+      "type": {
+        "type": "string",
+        "oneOf": [
+          "invocations"
+        ]
+      },
+      "id": {
+        "type": "string"
+      },
+      "attributes": {
+        "$ref": "#/definitions/InvokeDataAttributes"
+      }
+    },
+    "InvokeDataAttributes": {
+      "type": "object",
+      "properties": {
+        "params": {
+          "type": "array"
+        }
+      }
+    }
+  }
+}

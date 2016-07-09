@@ -1,0 +1,64 @@
+{
+  "name": "rfunc",
+  "version": "1.0.6",
+  "description": "Remote function call with async interface",
+  "main": "lib",
+  "browser": {
+    "./client": "sims/browser/client",
+    "./lib/constants": "sims/browser/lib/constants"
+  },
+  "scripts": {
+    "test": "./ci/test.js",
+    "prepublish": "./ci/build.js"
+  },
+  "repository": "rfunc-labo/rfunc",
+  "keywords": [
+    "rfunc"
+  ],
+  "author": {
+    "name": "Taka Okunishi",
+    "email": "okunishitaka.com@gmail.com",
+    "url": "http://okunishitaka.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rfunc-labo/rfunc/issues"
+  },
+  "homepage": "https://github.com/rfunc-labo/rfunc#readme",
+  "dependencies": {
+    "aschema": "^1.0.3",
+    "co": "^4.6.0",
+    "defaults": "^1.0.3",
+    "koa": "^2.0.0",
+    "koa-bodyparser": "^3.1.0",
+    "koa-router": "^7.0.1",
+    "koa-static": "^3.0.0",
+    "rfunc-client": "^1.0.0",
+    "rfunc-constants": "^1.0.0",
+    "stringcase": "^3.0.1",
+    "superagent": "^2.0.0",
+    "superagent-promise-plugin": "^3.2.0",
+    "uuid": "^2.0.2"
+  },
+  "devDependencies": {
+    "ape-compiling": "^4.3.3",
+    "ape-covering": "^3.0.3",
+    "ape-formatting": "^1.0.0",
+    "ape-releasing": "^4.0.1",
+    "ape-reporting": "^3.0.1",
+    "ape-tasking": "^4.0.3",
+    "ape-testing": "^4.0.0",
+    "ape-tmpl": "^5.0.11",
+    "ape-updating": "^4.0.3",
+    "aport": "^1.0.0",
+    "arequest": "^2.0.4",
+    "asleep": "^1.0.3",
+    "coz": "^6.0.3",
+    "filedel": "^2.0.1",
+    "injectmock": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  }
+}
