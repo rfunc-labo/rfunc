@@ -54,9 +54,8 @@ describe('rfunc', function () {
             bye: { desc: 'Say bye' }
           }
         }
-      }
-    }, {
-      middlewares: [
+      },
+      $middlewares: [
         co.wrap(function * hoge (ctx, next) {
           ctx.set('hoge', 'This is the hoge')
           yield next()
