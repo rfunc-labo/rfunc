@@ -23,9 +23,11 @@ describe('rfunc', function () {
     rfunc = new RFunc({
       greeting: {
         hello (name) {
+          let { state } = this
           return co(function * () {
             let d = new Date()
             yield asleep(100)
+            assert.equal(state.msgFromBefore, 'hey,yo!')
             return {
               time: new Date() - d,
               message: 'hey!',
@@ -35,6 +37,15 @@ describe('rfunc', function () {
         },
         bye () {
 
+        },
+        $before (state) {
+          let { module } = state
+          assert.equal(module, 'greeting')
+          state.msgFromBefore = 'hey,yo!'
+        },
+        $after (state) {
+          let { returns } = state
+          assert.equal(returns.message, 'hey!')
         },
         $spec: {
           name: 'hoge',

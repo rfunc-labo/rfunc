@@ -157,8 +157,28 @@ co(function * () {
   rfunc(
     {
       'sign': {
-        signin (username, password) { /* ... */ },
+        signin (username, password) {
+          let { state } = this // Access state property of koa
+          console.log(state)
+          /* ... */
+        },
         signout () { /* ... */ },
+        // Callback before a method invoked
+        $before (state) {
+          let { module, method, params } = state
+          return co(function * () {
+            if (state.somethingIsWrong) {
+              throw new Error('Something wrong!') // Throw error to reject invoking
+            }
+            state.hey = 'Say hey from before' // Set state value to share something with methods
+            /* ... */
+          })
+        },
+        // Callback after a method invoked
+        $after (state) {
+          let { module, method, params, returns } = state
+          /* ... */
+        },
         // Describe api specification
         $spec: {
           name: 'sign-api',
