@@ -72,6 +72,23 @@ describe('rfunc', function () {
   }))
 
   it('Rfunc', () => co(function * () {
+    // Head for all api
+    {
+      let { statusCode, body, headers } = yield request({
+        url: `${baseUrl}/rfunc`,
+        method: 'HEAD'
+      })
+      assert.equal(statusCode, 204)
+    }
+    // Options for all api
+    {
+      let { statusCode, body, headers } = yield request({
+        url: `${baseUrl}/rfunc`,
+        method: 'OPTIONS'
+      })
+      assert.equal(statusCode, 200)
+      assert.ok(body[ 'greeting' ])
+    }
     // Head for api
     {
       let { statusCode, body, headers } = yield request({
