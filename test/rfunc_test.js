@@ -86,7 +86,7 @@ describe('rfunc', function () {
         method: 'OPTIONS'
       })
       assert.equal(statusCode, 200)
-      assert.ok(body[ 'greeting' ])
+      assert.ok(body.data.attributes[ 'greeting' ])
     }
     // Head for api
     {
@@ -105,7 +105,7 @@ describe('rfunc', function () {
         method: 'OPTIONS'
       })
       assert.equal(statusCode, 200)
-      assert.equal(body.name, 'hoge')
+      assert.equal(body.data.attributes.name, 'hoge')
     }
     // Head for api method
     {
