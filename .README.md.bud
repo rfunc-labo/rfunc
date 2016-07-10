@@ -21,7 +21,10 @@ module.exports = readmeMdBud({
   },
   overview: 'doc/overview.md',
   links: require('./doc/links'),
-  vars: {}
+  vars: {
+    CLIENT_EXAMPLE_PATH: require.resolve('rfunc-client/example/example-usage'),
+    CLIENT_ADVANCED_EXAMPLE_PATH: require.resolve('rfunc-client/example/example-advanced-usage')
+  }
 })
 
 if (!module.parent) {
