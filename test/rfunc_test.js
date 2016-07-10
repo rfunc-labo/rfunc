@@ -125,7 +125,7 @@ describe('rfunc', function () {
         json: true,
         body: {
           data: {
-            type: 'calls',
+            type: 'invocations',
             id: uuid.v4(),
             attributes: {
               params: [ 'foo', 'bar' ]
