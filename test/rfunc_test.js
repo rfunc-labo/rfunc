@@ -152,6 +152,12 @@ describe('rfunc', function () {
       assert.ok(errors)
     }
   }))
+
+  it('to middleware', () => {
+    let middleware = rfunc.toMiddleware()
+    assert.ok(middleware)
+    assert.equal(typeof middleware, 'function')
+  })
 })
 
 /* global describe, before, after, it */
