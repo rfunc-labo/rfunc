@@ -35,6 +35,10 @@ describe('rfunc', function () {
             }
           })
         },
+        helloAlias (...args) {
+          const s = this
+          return s.hello(...args)
+        },
         bye () {
 
         },
@@ -121,6 +125,28 @@ describe('rfunc', function () {
     {
       let { statusCode, body } = yield request({
         url: `${baseUrl}/rfunc/greeting/hello`,
+        method: 'POST',
+        json: true,
+        body: {
+          data: {
+            type: 'invocations',
+            id: uuid.v4(),
+            attributes: {
+              params: [ 'foo', 'bar' ]
+            }
+          }
+        }
+      })
+      assert.equal(statusCode, 200)
+      let { returns } = body.data.attributes
+      assert.equal(returns.message, 'hey!')
+      assert.equal(returns.to, 'foo')
+    }
+
+    // Say hello from alias for api method
+    {
+      let { statusCode, body } = yield request({
+        url: `${baseUrl}/rfunc/greeting/hello-alias`,
         method: 'POST',
         json: true,
         body: {
