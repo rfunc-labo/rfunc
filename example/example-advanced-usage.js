@@ -21,8 +21,8 @@ co(function * () {
         },
         signout () { /* ... */ },
         // Callback before a method invoked
-        $before (state) {
-          let { module, method, params } = state
+        $before (methodName, params) {
+          let { state } = this
           return co(function * () {
             if (state.somethingIsWrong) {
               throw new Error('Something wrong!') // Throw error to reject invoking
@@ -32,8 +32,8 @@ co(function * () {
           })
         },
         // Callback after a method invoked
-        $after (state) {
-          let { module, method, params, returns } = state
+        $after (methodName, params, returns) {
+          let { state } = this
           /* ... */
         },
         // Describe api specification
