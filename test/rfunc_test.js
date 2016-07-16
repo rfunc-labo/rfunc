@@ -42,13 +42,15 @@ describe('rfunc', function () {
         bye () {
 
         },
-        $before (state) {
-          let { module } = state
-          assert.equal(module, 'greeting')
+        $before () {
+          let s = this
+          let { state } = s
+          let { invocation } = state
+          assert.equal(invocation.module, 'greeting')
           state.msgFromBefore = 'hey,yo!'
         },
-        $after (state) {
-          let { returns } = state
+        $after (methodName, params, returns) {
+          let s = this
           assert.equal(returns.message, 'hey!')
         },
         $spec: {
