@@ -55,6 +55,7 @@ Remote function call with async interface
 <!-- Section from "doc/guides/01.Installation.md.hbs" Start -->
 
 <a name="section-doc-guides-01-installation-md"></a>
+
 Installation
 -----
 
@@ -68,6 +69,7 @@ $ npm install rfunc --save
 <!-- Section from "doc/guides/02.Usage.md.hbs" Start -->
 
 <a name="section-doc-guides-02-usage-md"></a>
+
 Usage
 ---------
 
@@ -134,6 +136,7 @@ co(function * () {
 <!-- Section from "doc/guides/03.Advanced Usage.md.hbs" Start -->
 
 <a name="section-doc-guides-03-advanced-usage-md"></a>
+
 Advanced Usage
 ---------
 
