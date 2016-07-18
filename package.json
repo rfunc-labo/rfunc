@@ -41,7 +41,8 @@
     "uuid": "^2.0.2"
   },
   "devDependencies": {
-    "ape-compiling": "^5.0.0",
+    "ababel": "^1.0.9",
+    "ababel-es2015": "^1.0.1",
     "ape-covering": "^3.0.3",
     "ape-formatting": "^1.0.2",
     "ape-releasing": "^4.0.1",
@@ -54,7 +55,6 @@
     "arequest": "^2.0.5",
     "asleep": "^1.0.3",
     "coz": "^6.0.5",
-    "filedel": "^2.0.2",
     "injectmock": "^2.0.0"
   },
   "engines": {

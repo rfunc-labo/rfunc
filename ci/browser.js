@@ -8,20 +8,12 @@
 
 process.chdir(`${__dirname}/..`)
 
-const apeTasking = require('ape-tasking')
-const apeCompiling = require('ape-compiling')
-const filedel = require('filedel')
-const co = require('co')
+const { runTasks } = require('ape-tasking')
+const ababelES2015 = require('ababel-es2015')
 
-apeTasking.runTasks('browser', [
-  () => filedel('sims/browser/**/*.js'),
-  () => co(function * () {
-    let filenames = [ 'client.js', 'lib/constants.js' ]
-    for (let filename of filenames) {
-      yield apeCompiling.compileToEs5(filename, {
-        cwd: '.',
-        out: 'sims/browser'
-      })
-    }
+runTasks('browser', [
+  () => ababelES2015('**/*.js', {
+    cwd: 'lib',
+    out: 'sims/browser'
   })
 ], true)
