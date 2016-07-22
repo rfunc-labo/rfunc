@@ -23,13 +23,14 @@ describe('rfunc', function () {
     rfunc = new RFunc({
       greeting: {
         hello (name) {
-          let { state } = this
+          const s = this
+          let { state } = s
           return co(function * () {
-            let d = new Date()
+            let d = s._now()
             yield asleep(100)
             assert.equal(state.msgFromBefore, 'hey,yo!')
             return {
-              time: new Date() - d,
+              time: s._now() - d,
               message: 'hey!',
               to: name
             }
@@ -41,6 +42,9 @@ describe('rfunc', function () {
         },
         bye () {
 
+        },
+        _now () {
+          return new Date()
         },
         $before () {
           let s = this
