@@ -34,7 +34,7 @@
     "koa-compose": "^2.4.0",
     "koa-router": "^7.0.1",
     "koa-static": "^3.0.0",
-    "rfunc-client": "^1.0.7",
+    "rfunc-client": "^1.0.8",
     "rfunc-constants": "^1.0.0",
     "rfunc-schemas": "^1.0.0",
     "stringcase": "^3.0.1",
