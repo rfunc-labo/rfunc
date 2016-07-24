@@ -189,8 +189,8 @@ describe('rfunc', function () {
           }
         }
       })
-      assert.equal(statusCode, 200)
-      assert.ok(body.data)
+      assert.equal(statusCode, 500)
+      assert.ok(body.errors)
     }
 
     // Send invalid
