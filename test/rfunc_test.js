@@ -43,6 +43,10 @@ describe('rfunc', function () {
         bye () {
 
         },
+        circularJson () {
+          let foo = { bar: 'baz' }
+          return Object.assign(foo, { foo })
+        },
         _now () {
           return new Date()
         },
@@ -55,7 +59,9 @@ describe('rfunc', function () {
         },
         $after (methodName, params, returns) {
           let s = this
-          assert.equal(returns.message, 'hey!')
+          if (methodName === 'hello') {
+            assert.equal(returns.message, 'hey!')
+          }
         },
         $spec: {
           name: 'hoge',
@@ -169,6 +175,22 @@ describe('rfunc', function () {
       let { returns } = body.data.attributes
       assert.equal(returns.message, 'hey!')
       assert.equal(returns.to, 'foo')
+    }
+
+    // Try circular json
+    {
+      let { statusCode, body } = yield request({
+        url: `${baseUrl}/rfunc/greeting/circular-json`,
+        method: 'POST',
+        json: true,
+        body: {
+          data: {
+            attributes: {}
+          }
+        }
+      })
+      assert.equal(statusCode, 200)
+      assert.ok(body.data)
     }
 
     // Send invalid
