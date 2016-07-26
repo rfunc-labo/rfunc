@@ -1,11 +1,11 @@
 {
   "name": "rfunc",
-  "version": "1.2.22",
+  "version": "1.2.23",
   "description": "Remote function call with async interface",
   "main": "lib",
   "browser": {
-    "./client": "sims/browser/client",
-    "./lib/constants": "sims/browser/lib/constants"
+    "./client": "shim/browser/client",
+    "./lib/constants": "shim/browser/lib/constants"
   },
   "scripts": {
     "test": "./ci/test.js",
@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/rfunc-labo/rfunc#readme",
   "dependencies": {
-    "aschema": "^1.0.6",
+    "aschema": "^1.0.7",
     "co": "^4.6.0",
     "defaults": "^1.0.3",
     "koa": "^2.0.0",
@@ -34,9 +34,9 @@
     "koa-compose": "^2.4.0",
     "koa-router": "^7.0.1",
     "koa-static": "^3.0.0",
-    "rfunc-client": "^1.0.8",
-    "rfunc-constants": "^1.0.0",
-    "rfunc-schemas": "^1.0.0",
+    "rfunc-client": "^1.0.9",
+    "rfunc-constants": "^1.0.2",
+    "rfunc-schemas": "^1.0.1",
     "stringcase": "^3.0.1",
     "uuid": "^2.0.2"
   },
