@@ -9,7 +9,7 @@ const rfunc = require('rfunc')
 const co = require('co')
 
 co(function * () {
-  // Setup server for Remote call
+  // Setup server for remote call
   yield rfunc({
     // Define APIs
     'sign': {
