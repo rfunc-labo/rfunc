@@ -265,7 +265,9 @@ Links
 ------
 
 + [rfunc-client][rfunc_client_url]
++ [rfunc-labo][rfunc_labo_url]
 
 [rfunc_client_url]: https://github.com/rfunc-labo/rfunc-client
+[rfunc_labo_url]: https://github.com/rfunc-labo
 
 <!-- Links End -->
