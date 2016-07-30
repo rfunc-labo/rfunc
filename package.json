@@ -1,6 +1,6 @@
 {
   "name": "rfunc",
-  "version": "1.2.30",
+  "version": "1.2.31",
   "description": "Remote function call with async interface",
   "main": "lib",
   "browser": {
