@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/rfunc-labo/rfunc#readme",
   "dependencies": {
-    "akoa": "^1.0.1",
+    "akoa": "^1.2.0",
     "aschema": "^1.0.7",
     "co": "^4.6.0",
     "defaults": "^1.0.3",
