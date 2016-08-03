@@ -71,6 +71,10 @@ describe('rfunc', function () {
           }
         }
       },
+      // Function as module
+      now () {
+        return new Date()
+      },
       $middlewares: [
         co.wrap(function * hoge (ctx, next) {
           ctx.set('hoge', 'This is the hoge')
@@ -204,6 +208,22 @@ describe('rfunc', function () {
       assert.equal(statusCode, 400)
       let { errors } = body
       assert.ok(errors)
+    }
+
+    // Get function as module
+    {
+      let { statusCode, body } = yield request({
+        url: `${baseUrl}/rfunc/now/default`,
+        method: 'POST',
+        json: true,
+        body: {
+          data: {
+            attributes: {}
+          }
+        }
+      })
+      assert.equal(statusCode, 200)
+      assert.ok(body.data.attributes.returns)
     }
   }))
 
