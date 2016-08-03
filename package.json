@@ -1,6 +1,6 @@
 {
   "name": "rfunc",
-  "version": "1.2.34",
+  "version": "1.2.35",
   "description": "Remote function call with async interface",
   "main": "lib",
   "browser": {
@@ -47,7 +47,7 @@
     "ape-tmpl": "^5.0.15",
     "ape-updating": "^4.0.5",
     "aport": "^1.0.0",
-    "arequest": "^2.0.6",
+    "arequest": "^2.0.7",
     "asleep": "^1.0.3",
     "coz": "^6.0.16",
     "injectmock": "^2.0.0"
