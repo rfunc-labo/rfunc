@@ -1,6 +1,6 @@
 {
   "name": "rfunc",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Remote function call with async interface",
   "main": "lib",
   "browser": {
@@ -31,7 +31,7 @@
     "asenv": "^1.0.4",
     "co": "^4.6.0",
     "defaults": "^1.0.3",
-    "rfunc-client": "^2.0.1",
+    "rfunc-client": "^2.0.2",
     "rfunc-constants": "^1.0.3",
     "rfunc-schemas": "^1.0.1",
     "stringcase": "^3.0.1",
