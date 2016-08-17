@@ -30,15 +30,15 @@
     "aschema": "^1.0.8",
     "asenv": "^1.0.6",
     "co": "^4.6.0",
-    "rfunc-client": "^2.0.3",
+    "rfunc-client": "^2.0.7",
     "rfunc-constants": "^1.0.3",
     "rfunc-schemas": "^1.0.1",
     "stringcase": "^3.0.1",
     "uuid": "^2.0.2"
   },
   "devDependencies": {
-    "ababel": "^1.1.0",
-    "ababel-es2015": "^1.0.5",
+    "ababel": "^1.1.2",
+    "ababel-es2015": "^1.0.6",
     "amocha": "^1.0.14",
     "ape-formatting": "^1.0.2",
     "ape-releasing": "^4.0.4",
