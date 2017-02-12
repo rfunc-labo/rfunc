@@ -1,6 +1,6 @@
 {
   "name": "rfunc",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "Remote function call with async interface",
   "main": "lib",
   "browser": {
@@ -8,8 +8,8 @@
     "./lib/constants": "shim/browser/lib/constants"
   },
   "scripts": {
-    "test": "./ci/test.js",
-    "prepublish": "./ci/build.js"
+    "test": "node ./ci/test.js",
+    "prepare": "node ./ci/build.js && node ./ci/shim.js"
   },
   "repository": "rfunc-labo/rfunc",
   "keywords": [
@@ -26,26 +26,25 @@
   },
   "homepage": "https://github.com/rfunc-labo/rfunc#readme",
   "dependencies": {
-    "akoa": "^1.4.4",
+    "akoa": "^1.4.5",
     "aschema": "^2.0.4",
     "asenv": "^1.0.6",
     "co": "^4.6.0",
-    "rfunc-client": "^2.0.11",
+    "rfunc-client": "^2.0.12",
     "rfunc-constants": "^1.0.3",
     "rfunc-schemas": "^1.0.1",
-    "stringcase": "^3.0.1",
-    "uuid": "^2.0.2"
+    "stringcase": "^3.2.1",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
-    "ababel": "^1.1.2",
-    "ababel-es2015": "^1.0.6",
-    "amocha": "^1.0.14",
+    "ababel": "^2.0.1",
+    "ababel-es2015": "^2.0.1",
+    "amocha": "^2.0.0",
     "ape-formatting": "^1.0.2",
     "ape-releasing": "^4.0.4",
-    "ape-reporting": "^3.0.2",
     "ape-tasking": "^4.0.8",
-    "ape-tmpl": "^5.0.15",
-    "ape-updating": "^4.0.5",
+    "ape-tmpl": "^5.0.20",
+    "ape-updating": "^4.1.0",
     "aport": "^1.0.0",
     "arequest": "^2.0.7",
     "asleep": "^1.0.3",
@@ -54,6 +53,6 @@
   },
   "engines": {
     "node": ">=6",
-    "npm": ">=3"
+    "npm": ">=4"
   }
 }
