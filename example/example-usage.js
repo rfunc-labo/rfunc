@@ -6,23 +6,20 @@
 'use strict'
 
 const rfunc = require('rfunc')
-const co = require('co')
 
-co(function * () {
+void async function () {
   // Setup server for remote call
-  yield rfunc({
+  await  rfunc({
     // Define APIs
     'sign': {
-      signin (username, password) {
-        return co(function * () { // Returns a promise
-          /* ... */
-          return { success: true }
-        })
+      async signin (username, password) {
+        /* ... */
+        return {success: true}
       },
-      signout () {
+      async signout () {
         /* ... */
       }
     }
   }).listen(3000)
-}).catch((err) => console.error(err))
+}().catch((err) => console.error(err))
 

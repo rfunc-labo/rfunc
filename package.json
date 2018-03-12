@@ -1,6 +1,6 @@
 {
   "name": "rfunc",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Remote function call with async interface",
   "main": "lib",
   "browser": {
@@ -51,7 +51,7 @@
     "injectmock": "^2.0.0"
   },
   "engines": {
-    "node": ">=6",
-    "npm": ">=4"
+    "node": ">=8",
+    "npm": ">=5"
   }
 }
