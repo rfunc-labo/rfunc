@@ -149,28 +149,26 @@ const rfunc = require('rfunc')
 const http = require('http')
 
 void async function () {
-  let server = http.createServer()
+  const server = http.createServer()
   rfunc({
     'sign': {
       async signin (username, password) {
-        let {state} = this // Access state property of koa
+        const {state} = this // Access state property of koa
         console.log(state)
         /* ... */
       },
       async signout () { /* ... */ },
       // Callback before a method invoked
-      $before (methodName, params) {
-        let {state} = this
-        return co(function * () {
-          if (state.somethingIsWrong) {
-            throw new Error('Something wrong!') // Throw error to reject invoking
-          }
-          state.hey = 'Say hey from before' // Set state value to share something with methods
-          /* ... */
-        })
+      async $before (methodName, params) {
+        const {state} = this
+        if (state.somethingIsWrong) {
+          throw new Error('Something wrong!') // Throw error to reject invoking
+        }
+        state.hey = 'Say hey from before' // Set state value to share something with methods
+        /* ... */
       },
       // Callback after a method invoked
-      $after (methodName, params, returns) {
+      async $after (methodName, params, returns) {
         let {state} = this
         /* ... */
       },
