@@ -199,7 +199,17 @@ void async function () {
         /* ... */
         await next()
       }
-    ]
+    ],
+    $jsonLimit: '4mb',
+    $endpoints: {
+      '/api/foo/:id': { // Pass object to handle each HTTP verbs
+        'POST': (ctx) => {
+          const {id} = ctx.params
+          ctx.body = `This is foo with id: "${id}"`
+        }
+      },
+    },
+    $static: '/opt/www/public'
   }).applyTo(server) // Apply to existing http server
   server.listen(3000)
 }().catch((err) => console.error(err))

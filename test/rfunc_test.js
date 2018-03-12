@@ -77,7 +77,15 @@ describe('rfunc', function () {
           await
             next()
         }
-      ]
+      ],
+      $endpoints: {
+        '/api/foo/:id': { // Pass object to handle each HTTP verbs
+          'POST': (ctx) => {
+            const {id} = ctx.params
+            ctx.body = `This is foo with id: "${id}"`
+          }
+        }
+      }
     })
     await rfunc.listen(port)
     baseUrl = `http://localhost:${port}`
@@ -90,7 +98,7 @@ describe('rfunc', function () {
   it('Rfunc', async () => {
     // Head for all api
     {
-      let {statusCode, body, headers} = await request({
+      const {statusCode, body, headers} = await request({
         url: `${baseUrl}/rfunc`,
         method: 'HEAD'
       })
@@ -228,6 +236,15 @@ describe('rfunc', function () {
     let middleware = rfunc.toMiddleware()
     assert.ok(middleware)
     assert.equal(typeof middleware, 'function')
+  })
+
+  it('DO endpoint', async () => {
+    const {statusCode, body, headers} = await request({
+      url: `${baseUrl}/api/foo/1`,
+      method: 'POST'
+    })
+    assert.equal(statusCode, 200)
+    assert.equal(body, 'This is foo with id: "1"')
   })
 })
 

@@ -1,6 +1,6 @@
 {
   "name": "rfunc",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Remote function call with async interface",
   "main": "lib",
   "browser": {
@@ -30,6 +30,8 @@
     "aschema": "^2.0.4",
     "asenv": "^2.0.2",
     "koa-range": "^0.3.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^4.0.2",
     "rfunc-client": "^2.0.12",
     "rfunc-constants": "^1.0.3",
     "rfunc-schemas": "^1.0.1",
