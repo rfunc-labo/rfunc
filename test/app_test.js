@@ -6,22 +6,22 @@
 
 const app = require('../lib/app.js')
 const assert = require('assert')
-const co = require('co')
+
 
 describe('app', function () {
   this.timeout(3000)
 
-  before(() => co(function * () {
+  before(async () =>  {
 
-  }))
+  })
 
-  after(() => co(function * () {
+  after(async () =>  {
 
-  }))
+  })
 
-  it('App', () => co(function * () {
+  it('App', async () =>  {
 
-  }))
+  })
 })
 
 /* global describe, before, after, it */

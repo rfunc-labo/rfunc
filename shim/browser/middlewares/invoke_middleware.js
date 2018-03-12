@@ -1,91 +1,105 @@
 /**
  * @function invokeMiddleware
  */
-
 'use strict';
 
-var _regenerator = require('babel-runtime/regenerator');
+var _regeneratorRuntime = require("@babel/runtime/regenerator");
 
-var _regenerator2 = _interopRequireDefault(_regenerator);
+var _toConsumableArray = require("@babel/runtime/helpers/toConsumableArray");
 
-var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
+var _Object$assign = require("@babel/runtime/core-js/object/assign");
 
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+var _asyncToGenerator = require("@babel/runtime/helpers/asyncToGenerator");
 
-var _assign = require('babel-runtime/core-js/object/assign');
-
-var _assign2 = _interopRequireDefault(_assign);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var co = require('co');
 var load = require('rfunc-client/load');
-
 /** @lends invokeMiddleware */
+
+
 function invokeMiddleware(config) {
   var name = config.name,
       methods = config.methods,
       before = config.before,
       after = config.after;
+  return (
+    /*#__PURE__*/
+    function () {
+      var _invokeMiddleware = _asyncToGenerator(
+      /*#__PURE__*/
+      _regeneratorRuntime.mark(function _callee2(ctx, next) {
+        var module, instance;
+        return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                module = _Object$assign({}, methods, {
+                  $before: before,
+                  $after: after
+                });
+                _context2.next = 3;
+                return load(module, {
+                  $$name: name,
+                  $$ctx: ctx
+                });
 
+              case 3:
+                instance = _context2.sent;
 
-  return co.wrap(_regenerator2.default.mark(function invokeMiddleware(ctx, next) {
-    var module, instance;
-    return _regenerator2.default.wrap(function invokeMiddleware$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            module = (0, _assign2.default)({}, methods, {
-              $before: before,
-              $after: after
-            });
-            _context2.next = 3;
-            return load(module, {
-              $$name: name,
-              $$ctx: ctx
-            });
+                ctx.invoke =
+                /*#__PURE__*/
+                function () {
+                  var _invoke = _asyncToGenerator(
+                  /*#__PURE__*/
+                  _regeneratorRuntime.mark(function _callee(methodName) {
+                    var params,
+                        method,
+                        _args = arguments;
+                    return _regeneratorRuntime.wrap(function _callee$(_context) {
+                      while (1) {
+                        switch (_context.prev = _context.next) {
+                          case 0:
+                            params = _args.length > 1 && _args[1] !== undefined ? _args[1] : [];
+                            method = instance[methodName];
 
-          case 3:
-            instance = _context2.sent;
+                            if (method) {
+                              _context.next = 4;
+                              break;
+                            }
 
+                            throw new Error("[rfunc] Method not found: ".concat(methodName));
 
-            ctx.invoke = co.wrap(_regenerator2.default.mark(function invoke(methodName) {
-              var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-              var method;
-              return _regenerator2.default.wrap(function invoke$(_context) {
-                while (1) {
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      method = instance[methodName];
+                          case 4:
+                            return _context.abrupt("return", instance[methodName].apply(instance, _toConsumableArray(params)));
 
-                      if (method) {
-                        _context.next = 3;
-                        break;
+                          case 5:
+                          case "end":
+                            return _context.stop();
+                        }
                       }
+                    }, _callee, this);
+                  }));
 
-                      throw new Error('[rfunc] Method not found: ' + methodName);
+                  return function invoke(_x3) {
+                    return _invoke.apply(this, arguments);
+                  };
+                }();
 
-                    case 3:
-                      return _context.abrupt('return', instance[methodName].apply(instance, (0, _toConsumableArray3.default)(params)));
+                _context2.next = 7;
+                return next();
 
-                    case 4:
-                    case 'end':
-                      return _context.stop();
-                  }
-                }
-              }, invoke, this);
-            }));
-            _context2.next = 7;
-            return next();
+              case 7:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
 
-          case 7:
-          case 'end':
-            return _context2.stop();
-        }
-      }
-    }, invokeMiddleware, this);
-  }));
+      return function invokeMiddleware(_x, _x2) {
+        return _invokeMiddleware.apply(this, arguments);
+      };
+    }()
+  );
 }
 
 module.exports = invokeMiddleware;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImludm9rZV9taWRkbGV3YXJlLmpzIl0sIm5hbWVzIjpbImNvIiwicmVxdWlyZSIsImxvYWQiLCJpbnZva2VNaWRkbGV3YXJlIiwiY29uZmlnIiwibmFtZSIsIm1ldGhvZHMiLCJiZWZvcmUiLCJhZnRlciIsIndyYXAiLCJjdHgiLCJuZXh0IiwibW9kdWxlIiwiJGJlZm9yZSIsIiRhZnRlciIsIiQkbmFtZSIsIiQkY3R4IiwiaW5zdGFuY2UiLCJpbnZva2UiLCJtZXRob2ROYW1lIiwicGFyYW1zIiwibWV0aG9kIiwiRXJyb3IiLCJleHBvcnRzIl0sIm1hcHBpbmdzIjoiQUFBQTs7OztBQUlBOzs7Ozs7Ozs7Ozs7Ozs7O0FBRUEsSUFBTUEsS0FBS0MsUUFBUSxJQUFSLENBQVg7QUFDQSxJQUFNQyxPQUFPRCxRQUFRLG1CQUFSLENBQWI7O0FBRUE7QUFDQSxTQUFTRSxnQkFBVCxDQUEyQkMsTUFBM0IsRUFBbUM7QUFBQSxNQUMzQkMsSUFEMkIsR0FDTUQsTUFETixDQUMzQkMsSUFEMkI7QUFBQSxNQUNyQkMsT0FEcUIsR0FDTUYsTUFETixDQUNyQkUsT0FEcUI7QUFBQSxNQUNaQyxNQURZLEdBQ01ILE1BRE4sQ0FDWkcsTUFEWTtBQUFBLE1BQ0pDLEtBREksR0FDTUosTUFETixDQUNKSSxLQURJOzs7QUFHakMsU0FBT1IsR0FBR1MsSUFBSCw0QkFBUSxTQUFXTixnQkFBWCxDQUE2Qk8sR0FBN0IsRUFBa0NDLElBQWxDO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNUQyxrQkFEUyxHQUNBLHNCQUFjLEVBQWQsRUFBa0JOLE9BQWxCLEVBQTJCO0FBQ3RDTyx1QkFBU04sTUFENkI7QUFFdENPLHNCQUFRTjtBQUY4QixhQUEzQixDQURBO0FBQUE7QUFBQSxtQkFLUU4sS0FBS1UsTUFBTCxFQUFhO0FBQ2hDRyxzQkFBUVYsSUFEd0I7QUFFaENXLHFCQUFPTjtBQUZ5QixhQUFiLENBTFI7O0FBQUE7QUFLVE8sb0JBTFM7OztBQVViUCxnQkFBSVEsTUFBSixHQUFhbEIsR0FBR1MsSUFBSCw0QkFBUSxTQUFXUyxNQUFYLENBQW1CQyxVQUFuQjtBQUFBLGtCQUErQkMsTUFBL0IsdUVBQXdDLEVBQXhDO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNmQyw0QkFEZSxHQUNOSixTQUFVRSxVQUFWLENBRE07O0FBQUEsMEJBRWRFLE1BRmM7QUFBQTtBQUFBO0FBQUE7O0FBQUEsNEJBR1gsSUFBSUMsS0FBSixnQ0FBdUNILFVBQXZDLENBSFc7O0FBQUE7QUFBQSx1REFLWkYsU0FBVUUsVUFBVixtREFBMEJDLE1BQTFCLEVBTFk7O0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLGlCQUFXRixNQUFYO0FBQUEsYUFBUixFQUFiO0FBVmE7QUFBQSxtQkFpQlBQLE1BakJPOztBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQSxPQUFXUixnQkFBWDtBQUFBLEdBQVIsRUFBUDtBQW1CRDs7QUFFRFMsT0FBT1csT0FBUCxHQUFpQnBCLGdCQUFqQiIsImZpbGUiOiJpbnZva2VfbWlkZGxld2FyZS5qcyIsInNvdXJjZVJvb3QiOiJsaWIiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEBmdW5jdGlvbiBpbnZva2VNaWRkbGV3YXJlXG4gKi9cblxuJ3VzZSBzdHJpY3QnXG5cbmNvbnN0IGNvID0gcmVxdWlyZSgnY28nKVxuY29uc3QgbG9hZCA9IHJlcXVpcmUoJ3JmdW5jLWNsaWVudC9sb2FkJylcblxuLyoqIEBsZW5kcyBpbnZva2VNaWRkbGV3YXJlICovXG5mdW5jdGlvbiBpbnZva2VNaWRkbGV3YXJlIChjb25maWcpIHtcbiAgbGV0IHsgbmFtZSwgbWV0aG9kcywgYmVmb3JlLCBhZnRlciB9ID0gY29uZmlnXG5cbiAgcmV0dXJuIGNvLndyYXAoZnVuY3Rpb24gKiBpbnZva2VNaWRkbGV3YXJlIChjdHgsIG5leHQpIHtcbiAgICBsZXQgbW9kdWxlID0gT2JqZWN0LmFzc2lnbih7fSwgbWV0aG9kcywge1xuICAgICAgJGJlZm9yZTogYmVmb3JlLFxuICAgICAgJGFmdGVyOiBhZnRlclxuICAgIH0pXG4gICAgbGV0IGluc3RhbmNlID0geWllbGQgbG9hZChtb2R1bGUsIHtcbiAgICAgICQkbmFtZTogbmFtZSxcbiAgICAgICQkY3R4OiBjdHhcbiAgICB9KVxuXG4gICAgY3R4Lmludm9rZSA9IGNvLndyYXAoZnVuY3Rpb24gKiBpbnZva2UgKG1ldGhvZE5hbWUsIHBhcmFtcyA9IFtdKSB7XG4gICAgICBsZXQgbWV0aG9kID0gaW5zdGFuY2VbIG1ldGhvZE5hbWUgXVxuICAgICAgaWYgKCFtZXRob2QpIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBbcmZ1bmNdIE1ldGhvZCBub3QgZm91bmQ6ICR7bWV0aG9kTmFtZX1gKVxuICAgICAgfVxuICAgICAgcmV0dXJuIGluc3RhbmNlWyBtZXRob2ROYW1lIF0oLi4ucGFyYW1zKVxuICAgIH0pXG4gICAgeWllbGQgbmV4dCgpXG4gIH0pXG59XG5cbm1vZHVsZS5leHBvcnRzID0gaW52b2tlTWlkZGxld2FyZVxuIl19
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1pZGRsZXdhcmVzL2ludm9rZV9taWRkbGV3YXJlLmpzIl0sIm5hbWVzIjpbImxvYWQiLCJyZXF1aXJlIiwiaW52b2tlTWlkZGxld2FyZSIsImNvbmZpZyIsIm5hbWUiLCJtZXRob2RzIiwiYmVmb3JlIiwiYWZ0ZXIiLCJjdHgiLCJuZXh0IiwibW9kdWxlIiwiJGJlZm9yZSIsIiRhZnRlciIsIiQkbmFtZSIsIiQkY3R4IiwiaW5zdGFuY2UiLCJpbnZva2UiLCJtZXRob2ROYW1lIiwicGFyYW1zIiwibWV0aG9kIiwiRXJyb3IiLCJleHBvcnRzIl0sIm1hcHBpbmdzIjoiQUFBQTs7O0FBSUE7Ozs7Ozs7Ozs7QUFFQSxJQUFNQSxPQUFPQyxRQUFRLG1CQUFSLENBQWI7QUFFQTs7O0FBQ0EsU0FBU0MsZ0JBQVQsQ0FBMkJDLE1BQTNCLEVBQW1DO0FBQUEsTUFDMUJDLElBRDBCLEdBQ01ELE1BRE4sQ0FDMUJDLElBRDBCO0FBQUEsTUFDcEJDLE9BRG9CLEdBQ01GLE1BRE4sQ0FDcEJFLE9BRG9CO0FBQUEsTUFDWEMsTUFEVyxHQUNNSCxNQUROLENBQ1hHLE1BRFc7QUFBQSxNQUNIQyxLQURHLEdBQ01KLE1BRE4sQ0FDSEksS0FERztBQUdqQztBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsK0JBQU8sa0JBQWlDQyxHQUFqQyxFQUFzQ0MsSUFBdEM7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0NDLHNCQURELEdBQ1UsZUFBYyxFQUFkLEVBQWtCTCxPQUFsQixFQUEyQjtBQUN4Q00sMkJBQVNMLE1BRCtCO0FBRXhDTSwwQkFBUUw7QUFGZ0MsaUJBQTNCLENBRFY7QUFBQTtBQUFBLHVCQUtrQlAsS0FBS1UsTUFBTCxFQUFhO0FBQ2xDRywwQkFBUVQsSUFEMEI7QUFFbENVLHlCQUFPTjtBQUYyQixpQkFBYixDQUxsQjs7QUFBQTtBQUtDTyx3QkFMRDs7QUFVTFAsb0JBQUlRLE1BQUo7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLDJDQUFhLGlCQUF1QkMsVUFBdkI7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFtQ0Msa0NBQW5DLDJEQUE0QyxFQUE1QztBQUNQQyxrQ0FETyxHQUNFSixTQUFTRSxVQUFULENBREY7O0FBQUEsZ0NBRU5FLE1BRk07QUFBQTtBQUFBO0FBQUE7O0FBQUEsa0NBR0gsSUFBSUMsS0FBSixxQ0FBdUNILFVBQXZDLEVBSEc7O0FBQUE7QUFBQSw2REFLSkYsU0FBU0UsVUFBVCxxQ0FBd0JDLE1BQXhCLEVBTEk7O0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBQWI7O0FBQUEsa0NBQTRCRixNQUE1QjtBQUFBO0FBQUE7QUFBQTs7QUFWSztBQUFBLHVCQWlCQ1AsTUFqQkQ7O0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsT0FBUDs7QUFBQSxzQkFBc0JQLGdCQUF0QjtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBbUJEOztBQUVEUSxPQUFPVyxPQUFQLEdBQWlCbkIsZ0JBQWpCIiwiZmlsZSI6Im1pZGRsZXdhcmVzL2ludm9rZV9taWRkbGV3YXJlLmpzIiwic291cmNlUm9vdCI6Ii4uLy4uL2xpYiIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQGZ1bmN0aW9uIGludm9rZU1pZGRsZXdhcmVcbiAqL1xuXG4ndXNlIHN0cmljdCdcblxuY29uc3QgbG9hZCA9IHJlcXVpcmUoJ3JmdW5jLWNsaWVudC9sb2FkJylcblxuLyoqIEBsZW5kcyBpbnZva2VNaWRkbGV3YXJlICovXG5mdW5jdGlvbiBpbnZva2VNaWRkbGV3YXJlIChjb25maWcpIHtcbiAgY29uc3Qge25hbWUsIG1ldGhvZHMsIGJlZm9yZSwgYWZ0ZXJ9ID0gY29uZmlnXG5cbiAgcmV0dXJuIGFzeW5jIGZ1bmN0aW9uIGludm9rZU1pZGRsZXdhcmUgKGN0eCwgbmV4dCkge1xuICAgIGNvbnN0IG1vZHVsZSA9IE9iamVjdC5hc3NpZ24oe30sIG1ldGhvZHMsIHtcbiAgICAgICRiZWZvcmU6IGJlZm9yZSxcbiAgICAgICRhZnRlcjogYWZ0ZXJcbiAgICB9KVxuICAgIGNvbnN0IGluc3RhbmNlID0gYXdhaXQgbG9hZChtb2R1bGUsIHtcbiAgICAgICQkbmFtZTogbmFtZSxcbiAgICAgICQkY3R4OiBjdHhcbiAgICB9KVxuXG4gICAgY3R4Lmludm9rZSA9IGFzeW5jIGZ1bmN0aW9uIGludm9rZSAobWV0aG9kTmFtZSwgcGFyYW1zID0gW10pIHtcbiAgICAgIGxldCBtZXRob2QgPSBpbnN0YW5jZVttZXRob2ROYW1lXVxuICAgICAgaWYgKCFtZXRob2QpIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBbcmZ1bmNdIE1ldGhvZCBub3QgZm91bmQ6ICR7bWV0aG9kTmFtZX1gKVxuICAgICAgfVxuICAgICAgcmV0dXJuIGluc3RhbmNlW21ldGhvZE5hbWVdKC4uLnBhcmFtcylcbiAgICB9XG4gICAgYXdhaXQgbmV4dCgpXG4gIH1cbn1cblxubW9kdWxlLmV4cG9ydHMgPSBpbnZva2VNaWRkbGV3YXJlXG4iXX0=

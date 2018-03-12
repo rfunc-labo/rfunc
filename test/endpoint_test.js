@@ -6,22 +6,22 @@
 
 const endpoint = require('../lib/endpoint.js')
 const assert = require('assert')
-const co = require('co')
+
 
 describe('endpoint', function () {
   this.timeout(3000)
 
-  before(() => co(function * () {
+  before(async () =>  {
 
-  }))
+  })
 
-  after(() => co(function * () {
+  after(async () =>  {
 
-  }))
+  })
 
-  it('Endpoint', () => co(function * () {
+  it('Endpoint', async () =>  {
 
-  }))
+  })
 })
 
 /* global describe, before, after, it */

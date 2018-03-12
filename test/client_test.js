@@ -9,7 +9,6 @@ const RFunc = require('../lib/rfunc.js')
 const asleep = require('asleep')
 const aport = require('aport')
 const assert = require('assert')
-const co = require('co')
 
 describe('client', function () {
   const BASE_URL = '/testing-api/rfunc'
@@ -17,25 +16,23 @@ describe('client', function () {
   let port
   let rfunc
   let baseUrl
-  before(() => co(function * () {
-    port = yield aport()
+  before(async () => {
+    port = await aport()
     rfunc = new RFunc({
       foo: {
-        bar (text) {
-          return co(function * () {
-            let d = new Date()
-            yield asleep(100)
-            return {
-              time: new Date() - d,
-              text
-            }
-          })
+        async bar (text) {
+          let d = new Date()
+          await asleep(100)
+          return {
+            time: new Date() - d,
+            text
+          }
         },
         $spec: {
           name: 'foo-api',
           methods: {
-            hello: { desc: 'Say hello' },
-            bye: { desc: 'Say bye' }
+            hello: {desc: 'Say hello'},
+            bye: {desc: 'Say bye'}
           }
         }
       },
@@ -43,24 +40,24 @@ describe('client', function () {
     })
     rfunc.listen(port)
     baseUrl = `http://localhost:${port}${BASE_URL}`
-  }))
+  })
 
-  after(() => co(function * () {
+  after(async () => {
     rfunc.close()
-  }))
+  })
 
-  it('Send client', () => co(function * () {
+  it('Send client', async () => {
     // Get description
     {
-      let desc = yield client(baseUrl).describe('foo')
+      let desc = await client(baseUrl).describe('foo')
       assert.ok(desc.name, 'foo-api')
     }
     {
-      let foo = yield client(baseUrl).connect('foo')
-      let hoge = yield foo.bar('hoge')
+      let foo = await client(baseUrl).connect('foo')
+      let hoge = await foo.bar('hoge')
       console.log(hoge)
     }
-  }))
+  })
 })
 
 /* global describe, before, after, it */

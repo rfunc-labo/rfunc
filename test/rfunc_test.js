@@ -10,31 +10,27 @@ const uuid = require('uuid')
 const asleep = require('asleep')
 const aport = require('aport')
 const arequest = require('arequest')
-const co = require('co')
 
 describe('rfunc', function () {
   this.timeout(3000)
-  let request = arequest.create({ jar: true })
+  let request = arequest.create({jar: true})
   let port
   let rfunc
   let baseUrl
-  before(() => co(function * () {
-    port = yield aport()
+  before(async () => {
+    port = await aport()
     rfunc = new RFunc({
       greeting: {
-        hello (name) {
-          const s = this
-          let { state } = s
-          return co(function * () {
-            let d = s._now()
-            yield asleep(100)
-            assert.equal(state.msgFromBefore, 'hey,yo!')
-            return {
-              time: s._now() - d,
-              message: 'hey!',
-              to: name
-            }
-          })
+        async hello (name) {
+          const {state} = this
+          const d = this._now()
+          await asleep(100)
+          assert.equal(state.msgFromBefore, 'hey,yo!')
+          return {
+            time: this._now() - d,
+            message: 'hey!',
+            to: name
+          }
         },
         helloAlias (...args) {
           const s = this
@@ -44,16 +40,16 @@ describe('rfunc', function () {
 
         },
         circularJson () {
-          let foo = { bar: 'baz' }
-          return Object.assign(foo, { foo })
+          let foo = {bar: 'baz'}
+          return Object.assign(foo, {foo})
         },
         _now () {
           return new Date()
         },
         $before () {
           let s = this
-          let { state } = s
-          let { invocation } = state
+          let {state} = s
+          let {invocation} = state
           assert.equal(invocation.module, 'greeting')
           state.msgFromBefore = 'hey,yo!'
         },
@@ -66,8 +62,8 @@ describe('rfunc', function () {
         $spec: {
           name: 'hoge',
           methods: {
-            hello: { desc: 'Say hello' },
-            bye: { desc: 'Say bye' }
+            hello: {desc: 'Say hello'},
+            bye: {desc: 'Say bye'}
           }
         }
       },
@@ -76,24 +72,25 @@ describe('rfunc', function () {
         return new Date()
       },
       $middlewares: [
-        co.wrap(function * hoge (ctx, next) {
+        async function (ctx, next) {
           ctx.set('hoge', 'This is the hoge')
-          yield next()
-        })
+          await
+            next()
+        }
       ]
     })
-    rfunc.listen(port)
+    await rfunc.listen(port)
     baseUrl = `http://localhost:${port}`
-  }))
+  })
 
-  after(() => co(function * () {
+  after(async () => {
     rfunc.close()
-  }))
+  })
 
-  it('Rfunc', () => co(function * () {
+  it('Rfunc', async () => {
     // Head for all api
     {
-      let { statusCode, body, headers } = yield request({
+      let {statusCode, body, headers} = await request({
         url: `${baseUrl}/rfunc`,
         method: 'HEAD'
       })
@@ -101,16 +98,16 @@ describe('rfunc', function () {
     }
     // Options for all api
     {
-      let { statusCode, body, headers } = yield request({
+      let {statusCode, body, headers} = await request({
         url: `${baseUrl}/rfunc`,
         method: 'OPTIONS'
       })
       assert.equal(statusCode, 200)
-      assert.ok(body.data.attributes[ 'greeting' ])
+      assert.ok(body.data.attributes['greeting'])
     }
     // Head for api
     {
-      let { statusCode, body, headers } = yield request({
+      let {statusCode, body, headers} = await request({
         url: `${baseUrl}/rfunc/greeting`,
         method: 'HEAD'
       })
@@ -120,7 +117,7 @@ describe('rfunc', function () {
     }
     // Options for api
     {
-      let { statusCode, body } = yield request({
+      let {statusCode, body} = await request({
         url: `${baseUrl}/rfunc/greeting`,
         method: 'OPTIONS'
       })
@@ -129,7 +126,7 @@ describe('rfunc', function () {
     }
     // Head for api method
     {
-      let { statusCode, body } = yield request({
+      let {statusCode, body} = await request({
         url: `${baseUrl}/rfunc/greeting/hello`,
         method: 'HEAD'
       })
@@ -139,7 +136,7 @@ describe('rfunc', function () {
 
     // Say hello for api method
     {
-      let { statusCode, body } = yield request({
+      let {statusCode, body} = await request({
         url: `${baseUrl}/rfunc/greeting/hello`,
         method: 'POST',
         json: true,
@@ -148,20 +145,20 @@ describe('rfunc', function () {
             type: 'invocations',
             id: uuid.v4(),
             attributes: {
-              params: [ 'foo', 'bar' ]
+              params: ['foo', 'bar']
             }
           }
         }
       })
       assert.equal(statusCode, 200)
-      let { returns } = body.data.attributes
+      let {returns} = body.data.attributes
       assert.equal(returns.message, 'hey!')
       assert.equal(returns.to, 'foo')
     }
 
     // Say hello from alias for api method
     {
-      let { statusCode, body } = yield request({
+      let {statusCode, body} = await request({
         url: `${baseUrl}/rfunc/greeting/hello-alias`,
         method: 'POST',
         json: true,
@@ -170,20 +167,20 @@ describe('rfunc', function () {
             type: 'invocations',
             id: uuid.v4(),
             attributes: {
-              params: [ 'foo', 'bar' ]
+              params: ['foo', 'bar']
             }
           }
         }
       })
       assert.equal(statusCode, 200)
-      let { returns } = body.data.attributes
+      let {returns} = body.data.attributes
       assert.equal(returns.message, 'hey!')
       assert.equal(returns.to, 'foo')
     }
 
     // Try circular json
     {
-      let { statusCode, body } = yield request({
+      let {statusCode, body} = await request({
         url: `${baseUrl}/rfunc/greeting/circular-json`,
         method: 'POST',
         json: true,
@@ -199,20 +196,20 @@ describe('rfunc', function () {
 
     // Send invalid
     {
-      let { statusCode, body } = yield request({
+      let {statusCode, body} = await request({
         url: `${baseUrl}/rfunc/greeting/hello`,
         method: 'POST',
         json: true,
         body: {}
       })
       assert.equal(statusCode, 400)
-      let { errors } = body
+      let {errors} = body
       assert.ok(errors)
     }
 
     // Get function as module
     {
-      let { statusCode, body } = yield request({
+      let {statusCode, body} = await request({
         url: `${baseUrl}/rfunc/now/default`,
         method: 'POST',
         json: true,
@@ -225,7 +222,7 @@ describe('rfunc', function () {
       assert.equal(statusCode, 200)
       assert.ok(body.data.attributes.returns)
     }
-  }))
+  })
 
   it('to middleware', () => {
     let middleware = rfunc.toMiddleware()

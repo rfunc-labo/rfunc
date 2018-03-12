@@ -6,20 +6,20 @@
 
 const moduleSpec = require('../lib/helper/module_spec.js')
 const assert = require('assert')
-const co = require('co')
+
 
 describe('module-spec', function () {
   this.timeout(3000)
 
-  before(() => co(function * () {
+  before(async () =>  {
 
-  }))
+  })
 
-  after(() => co(function * () {
+  after(async () =>  {
 
-  }))
+  })
 
-  it('Module spec', () => co(function * () {
+  it('Module spec', async () =>  {
     {
       let spec = moduleSpec({
         foo () {},
@@ -41,7 +41,7 @@ describe('module-spec', function () {
       })
       assert.equal(spec.methods.foo.desc, 'This is the foo')
     }
-  }))
+  })
 })
 
 /* global describe, before, after, it */

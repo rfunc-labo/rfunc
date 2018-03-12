@@ -6,22 +6,22 @@
 
 const invokeMiddleware = require('../lib/middlewares/invoke_middleware.js')
 const assert = require('assert')
-const co = require('co')
+
 
 describe('invoke-middleware', function () {
   this.timeout(3000)
 
-  before(() => co(function * () {
+  before(async () =>  {
 
-  }))
+  })
 
-  after(() => co(function * () {
+  after(async () =>  {
 
-  }))
+  })
 
-  it('Invoke middleware', () => co(function * () {
+  it('Invoke middleware', async () =>  {
 
-  }))
+  })
 })
 
 /* global describe, before, after, it */
