@@ -1,6 +1,6 @@
 {
   "name": "rfunc",
-  "version": "3.0.4",
+  "version": "4.0.0",
   "description": "Remote function call with async interface",
   "main": "lib",
   "browser": {
@@ -26,20 +26,20 @@
   },
   "homepage": "https://github.com/rfunc-labo/rfunc#readme",
   "dependencies": {
-    "akoa": "^1.4.5",
+    "akoa": "^2.0.0",
     "aschema": "^2.0.4",
     "asenv": "^2.0.2",
     "koa-range": "^0.3.0",
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.2",
-    "rfunc-client": "^2.0.12",
+    "rfunc-client": "^4.0.6",
     "rfunc-constants": "^1.0.3",
     "rfunc-schemas": "^1.0.1",
     "stringcase": "^4.1.1",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
-    "ababel": "^4.0.7",
+    "ababel": "^4.0.8",
     "amocha": "^5.0.0",
     "ape-formatting": "^1.0.2",
     "ape-releasing": "^4.0.4",
