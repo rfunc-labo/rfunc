@@ -1,6 +1,6 @@
 {
   "name": "rfunc",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Remote function call with async interface",
   "main": "lib",
   "browser": {
@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/rfunc-labo/rfunc#readme",
   "dependencies": {
-    "akoa": "^2.0.0",
+    "akoa": "^2.0.1",
     "aschema": "^2.0.4",
     "asenv": "^2.0.2",
     "koa-range": "^0.3.0",
