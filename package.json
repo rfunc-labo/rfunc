@@ -1,6 +1,6 @@
 {
   "name": "rfunc",
-  "version": "4.0.9",
+  "version": "4.0.10",
   "description": "Remote function call with async interface",
   "main": "lib",
   "browser": {
@@ -34,7 +34,7 @@
     "koa-static": "^5.0.0",
     "rfunc-client": "^5.0.5",
     "rfunc-constants": "^1.0.5",
-    "rfunc-schemas": "^1.0.1",
+    "rfunc-schemas": "^1.0.2",
     "stringcase": "^4.3.0",
     "uuid": "^3.3.2"
   },
@@ -42,14 +42,14 @@
     "ababel": "^5.0.9",
     "amocha": "^5.0.1",
     "ape-formatting": "^2.0.0",
-    "ape-releasing": "^5.0.1",
-    "ape-tasking": "^4.0.8",
+    "ape-releasing": "^5.0.2",
+    "ape-tasking": "^4.0.11",
     "ape-tmpl": "^6.0.12",
     "ape-updating": "^5.0.1",
     "aport": "^2.0.0",
-    "arequest": "^3.0.1",
+    "arequest": "^3.0.2",
     "asleep": "^1.0.3",
-    "coz": "^7.0.8",
+    "coz": "^7.0.9",
     "injectmock": "^2.0.0"
   },
   "engines": {
