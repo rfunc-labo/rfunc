@@ -84,6 +84,11 @@ describe('rfunc', function () {
             const {id} = ctx.params
             ctx.body = `This is foo with id: "${id}"`
           }
+        },
+        '/api/:key':{
+          'GET':(ctx) => {
+            ctx.body = 'This is txt fors' + ctx.params.key
+          }
         }
       }
     })
@@ -245,6 +250,14 @@ describe('rfunc', function () {
     })
     assert.equal(statusCode, 200)
     assert.equal(body, 'This is foo with id: "1"')
+  })
+
+  it('Endpoint with extname', async () => {
+    const {statusCode, body} = await request({
+      url:`${baseUrl}/api/bar.txt`,
+      method:'GET'
+    })
+    console.log(statusCode, body)
   })
 })
 
